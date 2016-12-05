@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>New Message</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <h1>New Message</h1>
+        <div class="menu">
+            <ul>
+                <li><td><h:outputLink class="link" value="inbox.xhtml">Inbox</h:outputLink></td></li>
+                <li><td><h:outputLink class="link" value="newmessage.xhtml">New Message</h:outputLink></td></li>
+                <li><td><h:outputLink class="link" value="profile.xhtml">Profile</h:outputLink></td></li>
+                <li><td><h:form><h:commandLink class="link" action="#{userBean.logout()}" value="Logout"/></h:form></td></li>
+            </ul>
+        </div>
+        
+        <f:view>
+        <h:form id="sendMessageForm">
+            <table>
+                <tr>
+                    <td><h:outputText value="To: " /></td>
+                    <td><h:inputText id="rec" value="#{chatBean.reciever}"
+                            required="true" requiredMessage="Please enter the recievers Userame" /></td>
+                    <td><h:message for="rec" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Subject: " /></td>
+                    <td><h:inputText id="subject" value="#{chatBean.subject}"
+                            required="true" requiredMessage="Please write a subject" /></td>
+                    <td><h:message for="subject" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Content: " /></td>
+                    <td><h:inputText id="content" value="#{chatBean.content}"
+                            required="true" requiredMessage="Content can not be empty." /></td>
+                    <td><h:message for="content" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:commandButton value="Send" action="#{chatBean.sendMessage(userBean.username)}" style="color: midnightblue; background: white;
+                border: 1px solid lightgrey; text-decoration: none;
+                float: right; font-weight: bold; margin-top: 50px; padding: 8px 2px; border-radius: 10px" /></td>
+                </tr>
+            </table>
+        </h:form>
+    </f:view>
+        
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    <h:head>
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="style.css"/>
+    </h:head>
+   
+    <body class="profilebody">
+        <div class="menu">
+            <ul>
+                <li><td><h:outputLink class="link" value="inbox.xhtml">Inbox</h:outputLink></td></li>
+                <li><td><h:outputLink class="link" value="newmessage.xhtml">New Message</h:outputLink></td></li>
+                <li><td><h:outputLink class="link" value="profile.xhtml">Profile</h:outputLink></td></li>
+                <li><td><h:form><h:commandLink class="link" action="#{userBean.logout()}" value="Logout"/></h:form></td></li>
+            </ul>
+        </div>
+        <h:form>
+        <div style="width: 180px; float:right;">
+        <h:inputText id="search" value="#{userBean.visitUser}" pt:placeholder="Search users">
+            <f:ajax event="keyup" render="nameList"></f:ajax>
+             </h:inputText>
+            <h:dataTable id="nameList" value="#{userBean.visitedUser}" style="background-color: white; width: 100%;" var="name" border="0">
+                <h:column><a href="#{userBean.visitProfile(name.username)}?user=#{name.username}" >#{name.username}</a></h:column>
+                
+        </h:dataTable>
+        </div>
+        </h:form>
+        <h1>User: #{userBean.username}</h1>
+        
+        <br/>
+        
+        
+        <div>
+            <ui:param value="#{userBean.getUserByName(userBean.username)}" name="user"/>
+                <ul>
+                    Name: <li style="list-style: none; margin-bottom: 7px">#{user.name}</li>
+                    Email: <li style="list-style: none">#{user.email}</li>
+                </ul>
+
+        </div>
+        
+        <table style="margin: auto; text-align: center">
+            <tr>
+            <td>
+                <h:form>
+                <br/>
+                    <h1 style="margin: 15px">Log</h1>
+                    Content:<h:inputText value="#{logBean.content}" required="true" requiredMessage="Content Required"/>
+                   <h:commandButton style="margin-left: 10px; color: white; background: green; padding: 10px 5px;
+                                    border-radius: 15px" value="Post"
+                    action="#{logBean.insertLog(userBean.username)}"/>
+                </h:form>
+                <ul style="margin:50px 10px">
+                <ui:repeat value="#{logBean.getLogs(userBean.username)}" var="log">
+                    <li style="list-style: none; margin: 50px 0; border: 2px solid lightgrey; padding: 7px 5px;
+                        border-radius: 10px; color: darkcyan">#{log.content}</li>
+                </ui:repeat>
+                </ul>
+            </td>
+            </tr>
+
+        </table>
+        
+    </body>
+</html>

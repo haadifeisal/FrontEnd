@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Register</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        
+        <f:view>
+        <h:form id="registerForm">
+            <table>
+                <tr>
+                    <td><h:outputText value="Enter Your Name:" /></td>
+                    <td><h:inputText id="fname" value="#{userBean.name}"
+                            required="true" requiredMessage="Please enter your Name" /></td>
+                    <td><h:message for="fname" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Enter Your Email:" /></td>
+                    <td><h:inputText id="email" value="#{userBean.email}"
+                            required="true" requiredMessage="Please enter your Email" /></td>
+                    <td><h:message for="email" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Enter Your Username:" /></td>
+                    <td><h:inputText id="uname" value="#{userBean.username}"
+                            required="true" requiredMessage="Please enter your Username" /></td>
+                    <td><h:message for="uname" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Enter Password :" /></td>
+                    <td><h:inputSecret id="psw" value="#{userBean.password}"
+                            required="true" requiredMessage="Please enter your Password" /></td>
+                    <td><h:message for="psw" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Confirm Password :" /></td>
+                    <td><h:inputSecret id="cpsw" value="#{userBean.confirmPassword}"
+                            required="true" requiredMessage="Please confirm Password" /></td>
+                    <td><h:message for="cpsw" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td />
+                    <td><h:commandButton value="Register" action="#{userBean.registerAutenticated()}" style="color: midnightblue; background: white;
+                border: 1px solid lightgrey; text-decoration: none;
+                float: right; font-weight: bold; margin-top: 50px; padding: 8px 2px; border-radius: 10px" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputLink value="login.xhtml" style="color: midnightblue; background: white;
+                border: 1px solid lightgrey; text-decoration: none;
+                 font-weight: bold; margin-top: 50px; padding: 8px 2px; border-radius: 10px">Home</h:outputLink></td>
+                </tr>
+            </table>
+        </h:form>
+    </f:view>
+        
+    </body>
+</html>
